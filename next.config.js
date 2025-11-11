@@ -3,7 +3,7 @@ const nextConfig = {
   output: 'export',
   trailingSlash: true,
   skipTrailingSlashRedirect: true,
-  distDir: 'wedos-export',
+  distDir: 'gh-pages-export',
   
   images: {
     unoptimized: true,

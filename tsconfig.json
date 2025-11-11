@@ -33,7 +33,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "next-env.d.ts",
-    "wedos-export/types/**/*.ts"
+    "gh-pages-export/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"
