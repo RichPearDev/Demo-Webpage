@@ -1,13 +1,26 @@
+const repoName = 'Demo-Webpage';
+const isGithubActions = process.env.GITHUB_ACTIONS === 'true';
+const defaultBasePath = isGithubActions ? `/${repoName}` : '';
+const basePath =
+  typeof process.env.NEXT_PUBLIC_BASE_PATH === 'string'
+    ? process.env.NEXT_PUBLIC_BASE_PATH
+    : defaultBasePath;
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
   trailingSlash: true,
   skipTrailingSlashRedirect: true,
   distDir: 'gh-pages-export',
+  basePath,
+  assetPrefix: basePath,
   
   images: {
     unoptimized: true,
     formats: ['image/webp'],
+  },
+  env: {
+    NEXT_PUBLIC_BASE_PATH: basePath,
   },
   
   // Disable ESLint errors during builds

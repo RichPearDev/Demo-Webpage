@@ -4,10 +4,12 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { siteConfig } from '@/config/site';
 import { useTranslations } from '@/hooks/useTranslations';
+import { withBasePath } from '@/lib/basePath';
 
 export default function MaterialsSection() {
   const { dictionary } = useTranslations();
   const section = dictionary.sections.materials;
+  const backgroundImage = withBasePath(siteConfig.materials.backgroundImage);
 
   return (
     <section
@@ -16,7 +18,7 @@ export default function MaterialsSection() {
     >
       <div className="absolute inset-0">
         <Image
-          src={siteConfig.materials.backgroundImage}
+          src={backgroundImage}
           alt={section.title}
           fill
           className="object-cover object-center"

@@ -8,11 +8,13 @@ import ScrollLink from './ScrollLink';
 import LanguageSwitcher from './LanguageSwitcher';
 import { siteConfig } from '@/config/site';
 import { useTranslations } from '@/hooks/useTranslations';
+import { withBasePath } from '@/lib/basePath';
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const { dictionary } = useTranslations();
   const logo = siteConfig.company.logo;
+  const logoSrc = withBasePath(logo.src);
 
   return (
     <AnimatePresence>
@@ -29,7 +31,7 @@ export default function Navigation() {
           <div className="flex items-center justify-between py-4">
             <Link href="/" className="flex items-center gap-3 text-xl font-bold">
               <Image
-                src={logo.src}
+                src={logoSrc}
                 alt={dictionary.brand.logoAlt}
                 width={logo.width}
                 height={logo.height}

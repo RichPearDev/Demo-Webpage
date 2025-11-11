@@ -4,10 +4,16 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { siteConfig } from '@/config/site';
 import { useTranslations } from '@/hooks/useTranslations';
+import { withBasePath } from '@/lib/basePath';
 
 export default function PrintersSection() {
   const { dictionary } = useTranslations();
   const section = dictionary.sections.printers;
+  const backgroundImage = withBasePath(siteConfig.printers.backgroundImage);
+  const printerItems = siteConfig.printers.items.map((item) => ({
+    ...item,
+    image: withBasePath(item.image),
+  }));
 
   return (
     <section
@@ -16,7 +22,7 @@ export default function PrintersSection() {
     >
       <div className="absolute inset-0">
         <Image
-          src={siteConfig.printers.backgroundImage}
+          src={backgroundImage}
           alt={section.title}
           fill
           className="object-cover object-bottom"
@@ -35,7 +41,7 @@ export default function PrintersSection() {
           {section.title}
         </motion.h2>
         <div className="grid grid-cols-1 gap-16 text-white/80 lg:grid-cols-2">
-          {siteConfig.printers.items.map((item, index) => {
+          {printerItems.map((item, index) => {
             const copy = section.cards[index];
             if (!copy) {
               return null;

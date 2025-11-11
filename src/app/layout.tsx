@@ -4,6 +4,7 @@ import './globals.css';
 import { siteConfig } from '@/config/site';
 import { dictionaries } from '@/i18n/dictionaries';
 import { TranslationProvider } from '@/i18n/TranslationProvider';
+import { withBasePath } from '@/lib/basePath';
 
 const inter = Inter({ subsets: ['latin'] });
 const defaultDictionary = dictionaries[siteConfig.defaultLocale];
@@ -123,8 +124,8 @@ export default function RootLayout({
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content={siteConfig.theme.primaryHex} />
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" href="/favicon.ico" />
+        <link rel="icon" href={withBasePath('/favicon.ico')} />
+        <link rel="apple-touch-icon" href={withBasePath('/favicon.ico')} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

@@ -5,6 +5,7 @@ import Image from 'next/image';
 import ScrollLink from '@/components/ScrollLink';
 import { siteConfig } from '@/config/site';
 import { useTranslations } from '@/hooks/useTranslations';
+import { withBasePath } from '@/lib/basePath';
 
 const heroTransition = { duration: 0.8 };
 
@@ -12,6 +13,7 @@ export default function HeroSection() {
   const { dictionary } = useTranslations();
   const servicesHref = `#${dictionary.sections.services.id}`;
   const contactHref = `#${dictionary.sections.contact.id}`;
+  const backgroundImage = withBasePath(siteConfig.hero.backgroundImage);
 
   return (
     <motion.section
@@ -22,7 +24,7 @@ export default function HeroSection() {
     >
       <div className="absolute inset-0">
         <Image
-          src={siteConfig.hero.backgroundImage}
+          src={backgroundImage}
           alt={dictionary.hero.backgroundAlt}
           fill
           priority
@@ -93,4 +95,3 @@ export default function HeroSection() {
     </motion.section>
   );
 }
-

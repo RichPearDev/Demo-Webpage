@@ -4,11 +4,14 @@ import Image from 'next/image';
 import ScrollLink from './ScrollLink';
 import { siteConfig } from '@/config/site';
 import { useTranslations } from '@/hooks/useTranslations';
+import { withBasePath } from '@/lib/basePath';
 
 export default function Footer() {
   const { dictionary } = useTranslations();
   const { company, contact, poweredBy } = siteConfig;
-  const { backgroundImage, overlayOpacity } = siteConfig.footer;
+  const { overlayOpacity } = siteConfig.footer;
+  const backgroundImage = withBasePath(siteConfig.footer.backgroundImage);
+  const logoSrc = withBasePath(company.logo.src);
   const googleMapsEmbedKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_EMBED_KEY;
   const googleMapsEmbedSrc = googleMapsEmbedKey
     ? `https://www.google.com/maps/embed/v1/place?key=${googleMapsEmbedKey}&q=${encodeURIComponent(
@@ -62,7 +65,7 @@ export default function Footer() {
           <div className="grid gap-10 md:grid-cols-4">
             <div>
               <Image
-                src={company.logo.src}
+                src={logoSrc}
                 alt={dictionary.brand.logoAlt}
                 width={company.logo.width}
                 height={company.logo.height}

@@ -5,10 +5,12 @@ import Image from 'next/image';
 import ContactForm from '@/components/ContactForm';
 import { siteConfig } from '@/config/site';
 import { useTranslations } from '@/hooks/useTranslations';
+import { withBasePath } from '@/lib/basePath';
 
 export default function ContactSection() {
   const { dictionary } = useTranslations();
   const section = dictionary.sections.contact;
+  const backgroundImage = withBasePath(siteConfig.contactSection.backgroundImage);
 
   return (
     <section
@@ -17,7 +19,7 @@ export default function ContactSection() {
     >
       <div className="absolute inset-0">
         <Image
-          src={siteConfig.contactSection.backgroundImage}
+          src={backgroundImage}
           alt={section.backgroundAlt}
           fill
           className="object-cover"

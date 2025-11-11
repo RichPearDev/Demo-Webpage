@@ -4,10 +4,12 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { siteConfig } from '@/config/site';
 import { useTranslations } from '@/hooks/useTranslations';
+import { withBasePath } from '@/lib/basePath';
 
 export default function ServicesSection() {
   const { dictionary } = useTranslations();
   const section = dictionary.sections.services;
+  const backgroundImage = withBasePath(siteConfig.services.backgroundImage);
 
   return (
     <section
@@ -16,7 +18,7 @@ export default function ServicesSection() {
     >
       <div className="absolute inset-0">
         <Image
-          src={siteConfig.services.backgroundImage}
+          src={backgroundImage}
           alt={section.title}
           fill
           className="object-cover"
